@@ -47,3 +47,183 @@ a:active,
     transform: none;
   }
 }
+
+/* Admin uses a calm light surface system while the public site stays dark. */
+.admin-shell {
+  --admin-bg: #f4f2ef;
+  --admin-surface: #fbfaf8;
+  --admin-surface-raised: #ffffff;
+  --admin-line: #e4e0da;
+  --admin-line-strong: #d7d1c9;
+  --admin-ink: #25232a;
+  --admin-muted: #716d69;
+  --admin-faint: #9b9690;
+  background: var(--admin-bg) !important;
+  color: var(--admin-ink) !important;
+  letter-spacing: 0;
+}
+
+.admin-shell header,
+.admin-shell nav,
+.admin-shell aside,
+.admin-shell [class*="bg-navy-panel"] {
+  background-color: var(--admin-surface) !important;
+  color: var(--admin-ink);
+}
+
+.admin-shell header {
+  border-color: var(--admin-line) !important;
+  box-shadow: 0 1px 8px rgb(38 33 28 / 4%);
+}
+
+.admin-shell nav {
+  border-color: var(--admin-line) !important;
+}
+
+.admin-shell main {
+  background: var(--admin-bg);
+}
+
+.admin-shell [class*="text-white"] {
+  color: var(--admin-ink) !important;
+}
+
+.admin-shell [class*="text-white/90"],
+.admin-shell [class*="text-white/80"],
+.admin-shell [class*="text-white/70"],
+.admin-shell [class*="text-white/60"] {
+  color: var(--admin-muted) !important;
+}
+
+.admin-shell [class*="text-white/50"],
+.admin-shell [class*="text-white/40"],
+.admin-shell [class*="text-white/30"],
+.admin-shell [class*="text-white/25"],
+.admin-shell [class*="text-white/20"] {
+  color: var(--admin-faint) !important;
+}
+
+.admin-shell [class*="bg-accent-orange"],
+.admin-shell [class*="bg-red-"],
+.admin-shell [class*="bg-green-"] {
+  color: #ffffff !important;
+}
+
+.admin-shell [class*="border-white"] {
+  border-color: var(--admin-line) !important;
+}
+
+.admin-shell [class*="divide-white"] > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--admin-line) !important;
+}
+
+.admin-shell [class*="bg-navy-deep"] {
+  background-color: var(--admin-bg) !important;
+}
+
+.admin-shell [class*="hover:bg-white"]:hover {
+  background-color: #f0ede9 !important;
+}
+
+.admin-shell nav button {
+  border-left-color: transparent;
+  color: var(--admin-muted) !important;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.12s ease;
+}
+
+.admin-shell nav button:hover {
+  background-color: #f0ede9 !important;
+  color: var(--admin-ink) !important;
+}
+
+.admin-shell nav button[class*="bg-accent-orange"] {
+  background-color: #fff1e8 !important;
+  border-left-color: var(--accent-orange) !important;
+  color: var(--accent-orange) !important;
+}
+
+.admin-shell nav button[class*="bg-accent-orange"] svg {
+  color: var(--accent-orange) !important;
+}
+
+.admin-shell input,
+.admin-shell select,
+.admin-shell textarea,
+.admin-shell [class*="border-dashed"] {
+  background-color: var(--admin-surface-raised) !important;
+  border-color: var(--admin-line-strong) !important;
+  color: var(--admin-ink) !important;
+  box-shadow: inset 0 1px 2px rgb(38 33 28 / 3%);
+}
+
+.admin-shell input::placeholder,
+.admin-shell textarea::placeholder {
+  color: var(--admin-faint) !important;
+}
+
+.admin-shell input:focus,
+.admin-shell select:focus,
+.admin-shell textarea:focus {
+  border-color: var(--accent-orange) !important;
+  box-shadow: 0 0 0 3px rgb(232 121 43 / 12%);
+}
+
+.admin-shell [class*="bg-navy-panel"][class*="border"] {
+  box-shadow: 0 8px 24px rgb(38 33 28 / 5%);
+}
+
+.admin-shell [role="dialog"] {
+  background-color: var(--admin-surface) !important;
+  border-color: var(--admin-line) !important;
+  color: var(--admin-ink) !important;
+  box-shadow: -12px 0 36px rgb(38 33 28 / 12%);
+}
+
+.admin-shell [role="dialog"] fieldset {
+  border: 1px solid var(--admin-line);
+  background: var(--admin-surface-raised);
+  padding: 1rem;
+}
+
+.admin-shell [role="dialog"] legend {
+  color: var(--admin-muted) !important;
+  border-color: var(--admin-line) !important;
+  padding-inline: 0.25rem;
+}
+
+.admin-shell [role="dialog"] button[role="switch"] {
+  background-color: #d8d3cc !important;
+  transition: background-color 0.3s ease;
+}
+
+.admin-shell [role="dialog"] button[role="switch"][aria-checked="true"] {
+  background-color: var(--accent-orange) !important;
+}
+
+.admin-shell [role="dialog"] button[role="switch"] span {
+  background-color: #ffffff !important;
+  transition: transform 0.3s ease;
+}
+
+.admin-shell button,
+.admin-shell a,
+.admin-shell input,
+.admin-shell select,
+.admin-shell textarea {
+  transition-duration: 0.2s;
+}
+
+.admin-shell button:active,
+.admin-shell a:active {
+  transform: scale(0.98);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-shell *,
+  .admin-shell *::before,
+  .admin-shell *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

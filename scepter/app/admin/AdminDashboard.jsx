@@ -49,7 +49,7 @@ export default function AdminDashboard({ email }) {
   }[activeTab];
 
   return (
-    <div className="min-h-screen bg-navy-deep text-white flex flex-col">
+    <div className="admin-shell min-h-screen bg-navy-deep text-white flex flex-col">
       {/* Top bar */}
       <header className="border-b border-white/10 bg-navy-deep/95 backdrop-blur-sm sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
