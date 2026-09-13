@@ -48,11 +48,11 @@ a:active,
   }
 }
 
-/* Admin uses a calm light surface system while the public site stays dark. */
+/* Admin-only light surfaces; the public site keeps its dark navy theme. */
 .admin-shell {
   --admin-bg: #f4f2ef;
   --admin-surface: #fbfaf8;
-  --admin-surface-raised: #ffffff;
+  --admin-raised: #ffffff;
   --admin-line: #e4e0da;
   --admin-line-strong: #d7d1c9;
   --admin-ink: #25232a;
@@ -60,7 +60,6 @@ a:active,
   --admin-faint: #9b9690;
   background: var(--admin-bg) !important;
   color: var(--admin-ink) !important;
-  letter-spacing: 0;
 }
 
 .admin-shell header,
@@ -71,13 +70,10 @@ a:active,
   color: var(--admin-ink);
 }
 
-.admin-shell header {
-  border-color: var(--admin-line) !important;
-  box-shadow: 0 1px 8px rgb(38 33 28 / 4%);
-}
-
+.admin-shell header,
 .admin-shell nav {
   border-color: var(--admin-line) !important;
+  box-shadow: 0 1px 8px rgb(38 33 28 / 4%);
 }
 
 .admin-shell main {
@@ -121,7 +117,8 @@ a:active,
   background-color: var(--admin-bg) !important;
 }
 
-.admin-shell [class*="hover:bg-white"]:hover {
+.admin-shell [class*="hover:bg-white"]:hover,
+.admin-shell nav button:hover {
   background-color: #f0ede9 !important;
 }
 
@@ -129,11 +126,6 @@ a:active,
   border-left-color: transparent;
   color: var(--admin-muted) !important;
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.12s ease;
-}
-
-.admin-shell nav button:hover {
-  background-color: #f0ede9 !important;
-  color: var(--admin-ink) !important;
 }
 
 .admin-shell nav button[class*="bg-accent-orange"] {
@@ -150,7 +142,7 @@ a:active,
 .admin-shell select,
 .admin-shell textarea,
 .admin-shell [class*="border-dashed"] {
-  background-color: var(--admin-surface-raised) !important;
+  background-color: var(--admin-raised) !important;
   border-color: var(--admin-line-strong) !important;
   color: var(--admin-ink) !important;
   box-shadow: inset 0 1px 2px rgb(38 33 28 / 3%);
@@ -168,10 +160,6 @@ a:active,
   box-shadow: 0 0 0 3px rgb(232 121 43 / 12%);
 }
 
-.admin-shell [class*="bg-navy-panel"][class*="border"] {
-  box-shadow: 0 8px 24px rgb(38 33 28 / 5%);
-}
-
 .admin-shell [role="dialog"] {
   background-color: var(--admin-surface) !important;
   border-color: var(--admin-line) !important;
@@ -181,14 +169,13 @@ a:active,
 
 .admin-shell [role="dialog"] fieldset {
   border: 1px solid var(--admin-line);
-  background: var(--admin-surface-raised);
+  background: var(--admin-raised);
   padding: 1rem;
 }
 
 .admin-shell [role="dialog"] legend {
   color: var(--admin-muted) !important;
   border-color: var(--admin-line) !important;
-  padding-inline: 0.25rem;
 }
 
 .admin-shell [role="dialog"] button[role="switch"] {
@@ -203,14 +190,6 @@ a:active,
 .admin-shell [role="dialog"] button[role="switch"] span {
   background-color: #ffffff !important;
   transition: transform 0.3s ease;
-}
-
-.admin-shell button,
-.admin-shell a,
-.admin-shell input,
-.admin-shell select,
-.admin-shell textarea {
-  transition-duration: 0.2s;
 }
 
 .admin-shell button:active,

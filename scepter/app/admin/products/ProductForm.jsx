@@ -410,9 +410,9 @@ export default function ProductForm({ product, categories = [], onClose, onSaved
             >
               {saveState === 'saving' && <Loader2 size={14} className="animate-spin" />}
               {saveState === 'saving' && 'Saving…'}
-              {saveState === 'saved' && '✓ Saved'}
+              {saveState === 'saved' && 'Saved successfully'}
               {saveState === 'error' && 'Try Again'}
-              {saveState === 'idle' && (isEditing ? 'Save Changes' : 'Add Product')}
+              {saveState === 'idle' && 'Save product'}
             </button>
           </div>
         </div>

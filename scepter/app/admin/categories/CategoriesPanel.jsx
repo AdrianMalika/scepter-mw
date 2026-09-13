@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { Plus, Pencil, Trash2, ImageIcon, Loader2, FolderOpen, AlertTriangle } from 'lucide-react';
+import { Plus, Pencil, Trash2, ImageIcon, Loader2, FolderOpen, AlertTriangle, Search, X as XIcon } from 'lucide-react';
 import { createClient } from '@/lib/supabase/client';
 import CategoryForm from './CategoryForm';
 
@@ -15,6 +15,7 @@ export default function CategoriesPanel() {
   // deleteId: id pending confirmation, or null
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [deleting, setDeleting] = useState(false);
+  const [search, setSearch] = useState('');
 
   const load = useCallback(async () => {
     const supabase = createClient();
@@ -30,10 +31,15 @@ export default function CategoriesPanel() {
     setLoading(false);
   }, []);
 
+  // The loader synchronizes the panel with Supabase when the section mounts.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { load(); }, [load]);
 
   // Count products per category
   const productCount = (catId) => products.filter((p) => p.category === catId).length;
+  const filteredCategories = categories.filter((category) =>
+    category.name.toLowerCase().includes(search.trim().toLowerCase())
+  );
 
   const openAdd = () => { setFormTarget({}); setFormOpen(true); };
   const openEdit = (cat) => { setFormTarget(cat); setFormOpen(true); };
@@ -83,6 +89,28 @@ export default function CategoriesPanel() {
         </button>
       </div>
 
+      <div className="relative">
+        <Search size={14} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-white/30" />
+        <input
+          type="search"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Search categories…"
+          aria-label="Search categories"
+          className="w-full bg-navy-panel border border-white/10 pl-9 pr-9 py-2.5 text-sm text-white placeholder:text-white/25 outline-none focus:border-accent-orange/60 transition-colors"
+        />
+        {search && (
+          <button
+            type="button"
+            onClick={() => setSearch('')}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60 transition-colors"
+            aria-label="Clear category search"
+          >
+            <XIcon size={14} />
+          </button>
+        )}
+      </div>
+
       {/* Error */}
       {error && (
         <div className="border border-red-300/20 bg-red-950/20 p-3 text-sm text-red-300">{error}</div>
@@ -108,9 +136,18 @@ export default function CategoriesPanel() {
       )}
 
       {/* List */}
-      {!loading && categories.length > 0 && (
+      {!loading && categories.length > 0 && filteredCategories.length === 0 && (
+        <div className="border border-dashed border-white/10 py-12 text-center">
+          <p className="text-sm text-white/40">No categories match &ldquo;{search}&rdquo;.</p>
+          <button type="button" onClick={() => setSearch('')} className="mt-2 text-xs text-accent-orange hover:underline">
+            Clear search
+          </button>
+        </div>
+      )}
+
+      {!loading && filteredCategories.length > 0 && (
         <div className="border border-white/10 divide-y divide-white/5">
-          {categories.map((cat) => {
+          {filteredCategories.map((cat) => {
             const count = productCount(cat.id);
             const isConfirming = confirmDeleteId === cat.id;
             const hasProducts = count > 0;

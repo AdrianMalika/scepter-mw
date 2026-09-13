@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { createClient } from '@/lib/supabase/client';
 import { Package, FolderOpen, Image, Settings } from 'lucide-react';
@@ -49,10 +50,10 @@ export default function AdminDashboard({ email }) {
   }[activeTab];
 
   return (
-    <div className="admin-shell min-h-screen bg-navy-deep text-white flex flex-col">
+    <div className="admin-shell min-h-screen bg-navy-deep text-white">
       {/* Top bar */}
-      <header className="border-b border-white/10 bg-navy-deep/95 backdrop-blur-sm sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between h-14">
+      <header className="fixed inset-x-0 top-0 z-30 h-14 border-b border-white/10 bg-navy-deep">
+        <div className="flex h-full items-center justify-between px-4 sm:px-6">
           <div className="flex items-center gap-3">
             <span className="text-xs uppercase tracking-[0.2em] text-accent-orange font-medium">Scepter MW</span>
             <span className="text-white/20">/</span>
@@ -75,9 +76,9 @@ export default function AdminDashboard({ email }) {
         </div>
       </header>
 
-      <div className="flex flex-1 max-w-7xl mx-auto w-full">
+      <div className="min-h-screen pt-14">
         {/* Sidebar nav — desktop */}
-        <nav className="hidden md:flex flex-col w-52 shrink-0 border-r border-white/10 bg-navy-panel/50 py-6 px-3">
+        <nav className="fixed bottom-0 left-0 top-14 hidden w-52 flex-col border-r border-white/10 bg-navy-panel py-6 px-3 md:flex">
           <p className="text-[10px] uppercase tracking-widest text-white/25 px-3 mb-3">Management</p>
           {TABS.map(({ id, label, Icon }) => (
             <button
@@ -94,6 +95,14 @@ export default function AdminDashboard({ email }) {
               {label}
             </button>
           ))}
+          <div className="mt-auto space-y-1 border-t border-white/10 pt-4">
+            <Link
+              href="/"
+              className="flex w-full items-center px-3 py-2.5 text-sm text-white/50 transition-colors hover:bg-white/5 hover:text-white"
+            >
+              View website
+            </Link>
+          </div>
         </nav>
 
         {/* Mobile tab bar */}
@@ -113,7 +122,7 @@ export default function AdminDashboard({ email }) {
         </div>
 
         {/* Main content */}
-        <main className="flex-1 px-4 sm:px-8 py-8 pb-24 md:pb-8 min-w-0">
+        <main className="min-w-0 px-4 py-8 pb-24 sm:px-8 md:ml-52 md:pb-8">
           {ActivePanel && <ActivePanel />}
         </main>
       </div>

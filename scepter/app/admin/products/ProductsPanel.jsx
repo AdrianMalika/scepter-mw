@@ -47,6 +47,8 @@ export default function ProductsPanel() {
     setLoading(false);
   }, []);
 
+  // The loader synchronizes the panel with Supabase when the section mounts.
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => { load(); }, [load]);
 
   // Live search filter
