@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+:root {
+  --navy-deep: #14132B;
+  --navy-panel: #1B1A3A;
+  --accent-orange: #E8792B;
+  --warm-white: #FAFAFA;
+  --ink: #14132B;
+  --white: #FFFFFF;
+}
+
+@theme inline {
+  --color-navy-deep: var(--navy-deep);
+  --color-navy-panel: var(--navy-panel);
+  --color-accent-orange: var(--accent-orange);
+  --color-warm-white: var(--warm-white);
+  --color-ink: var(--ink);
+  --color-white: var(--white);
+  --font-sans: var(--font-poppins), Arial, sans-serif;
+  --font-display: var(--font-jost), Arial, sans-serif;
+}
+
+body {
+  background-color: var(--warm-white);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Base interactive feedback */
+button, 
+a, 
+.interactive-card {
+  transition: transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button:active, 
+a:active, 
+.interactive-card:active {
+  transform: scale(0.97);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  button:active, 
+  a:active, 
+  .interactive-card:active {
+    transform: none;
+  }
+}
